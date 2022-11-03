@@ -65,11 +65,11 @@ pacman -Sy --noconfirm \
 	python-pip \
 	uboot-tools \
 	zip \
-	zstd
+	zstd 2>&1 | grep -v "warning: could not get file information"
 
 # More Packages
 pacman -Sy --noconfirm \
-	tmate tmux htop
+	tmate tmux htop 2>&1 | grep -v "warning: could not get file information"
 
 # Custom ZSTD package
 wget https://github.com/dakkshesh07/zstd-pkgbuild/releases/download/1.5.2-8/zstd-1.5.2-8-x86_64.pkg.tar.zst
