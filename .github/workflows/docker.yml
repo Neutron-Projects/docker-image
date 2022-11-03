@@ -14,7 +14,7 @@ env:
   # Use Lowercase vaue of your Username
   GITHUB_USERNAME: dakkshesh07
   GITHUB_EMAIL: dakkshesh5@gmail.com
-  GITHUB_ORG: neutron-toolchains
+  GITHUB_ORG: neutron-projects
 
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
