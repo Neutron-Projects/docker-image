@@ -76,6 +76,12 @@ wget https://github.com/dakkshesh07/zstd-pkgbuild/releases/download/1.5.2-8/zstd
 pacman -U --noconfirm zstd-1.5.2-8-x86_64.pkg.tar.zst
 rm -rf zstd-1.5.2-8-x86_64.pkg.tar.zst
 
+# Openmp-Static package
+pacman -R openmp
+wget https://github.com/dakkshesh07/openmp-static-pkgbuild/releases/download/14.0.6-1/openmp-static-14.0.6-1-x86_64.pkg.tar.zst
+pacman -U --noconfirm openmp-static-14.0.6-1-x86_64.pkg.tar.zst
+rm -rf openmp-static-14.0.6-1-x86_64.pkg.tar.zst
+
 # Symlinks for python an
 ln -sf /usr/bin/pip3.10 /usr/bin/pip3
 ln -sf /usr/bin/pip3.10 /usr/bin/pip
