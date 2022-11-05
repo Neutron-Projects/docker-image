@@ -13,55 +13,55 @@ pacman -Syy
 
 # Install Development Packages
 pacman -Sy --noconfirm \
-	sudo \
-	nano \
-	git \
-	curl \
-	wget \
-	rsync \
-	aarch64-linux-gnu-binutils \
-	base-devel \
-	bc \
-	bison \
-	ccache \
-	clang \
-	cpio \
-	cmake \
-	flex \
-	gcc \
-	gcc-libs \
-	github-cli \
-	gperf \
-	jemalloc \
-	jdk-openjdk \
-	libelf \
-	lld \
-	lz4 \
-	llvm \
-	multilib-devel \
-	ninja \
-	openmp \
-	openssl \
-	patchelf \
-	perf \
-	perl \
-	python3 \
-	python-pip \
-	uboot-tools \
-	zip \
-	zstd 2>&1 | grep -v "warning: could not get file information"
+    sudo \
+    nano \
+    git \
+    curl \
+    wget \
+    rsync \
+    aarch64-linux-gnu-binutils \
+    base-devel \
+    bc \
+    bison \
+    ccache \
+    clang \
+    cpio \
+    cmake \
+    flex \
+    gcc \
+    gcc-libs \
+    github-cli \
+    gperf \
+    jemalloc \
+    jdk-openjdk \
+    libelf \
+    lld \
+    lz4 \
+    llvm \
+    multilib-devel \
+    ninja \
+    openmp \
+    openssl \
+    patchelf \
+    perf \
+    perl \
+    python3 \
+    python-pip \
+    uboot-tools \
+    zip \
+    zstd 2>&1 | grep -v "warning: could not get file information"
 
 # More Packages
 pacman -Sy --noconfirm \
-	tmate tmux htop 2>&1 | grep -v "warning: could not get file information"
-	
+    tmate tmux htop 2>&1 | grep -v "warning: could not get file information"
+
 # Create a non-root user for yay to install packages from AUR
 useradd -m -G wheel -s /bin/bash auruser
-echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 # AUR Packages
 sudo -u auruser yay -S --noconfirm \
-	alhp-keyring alhp-mirrorlist
+    alhp-keyring alhp-mirrorlist
 
 # Enable ALHP repos
 sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
@@ -94,6 +94,6 @@ pip3 --version
 
 # Install Some pip packages
 pip3 install \
-	telegram-send
+    telegram-send
 
 echo 'package installtion completed'

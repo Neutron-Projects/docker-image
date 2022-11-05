@@ -4,7 +4,7 @@
 
 # Run .profile
 if [ -f ~/.profile ]; then
-. ~/.profile
+    . ~/.profile
 fi
 
 # If not running interactively, don't do anything
@@ -19,7 +19,7 @@ PS1='[\u@\h \W]\$ '
 #PS1="[\u@\h \w]\\$ \[$(tput sgr0)\]"
 
 # AIK
-cloneaik(){
+cloneaik() {
     if [ -z "$1" ]; then
         local TMP=AIK
     else
@@ -28,7 +28,7 @@ cloneaik(){
     git clone --depth=1 --single-branch https://github.com/SebaUbuntu/AIK-Linux-Mirror.git $TMP
 }
 
-aik(){
+aik() {
     if [ -z "$2" ]; then
         local IMG="$1"
         local DIR="AIK"
