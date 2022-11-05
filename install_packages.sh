@@ -11,22 +11,6 @@ reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorli
 # Download fresh package databases from the servers
 pacman -Syy
 
-# Create a non-root user for yay to install packages from AUR
-useradd -m -G wheel -s /bin/bash auruser
-echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-# AUR Packages
-sudo -u auruser yay -S --noconfirm \
-	alhp-keyring alhp-mirrorlist
-
-# Enable ALHP repos
-sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i "/\[community-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
-
-# Update
-pacman -Syyu --noconfirm 2>&1 | grep -v "warning: could not get file information"
-
 # Install Development Packages
 pacman -Sy --noconfirm \
 	sudo \
@@ -70,6 +54,22 @@ pacman -Sy --noconfirm \
 # More Packages
 pacman -Sy --noconfirm \
 	tmate tmux htop 2>&1 | grep -v "warning: could not get file information"
+	
+# Create a non-root user for yay to install packages from AUR
+useradd -m -G wheel -s /bin/bash auruser
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# AUR Packages
+sudo -u auruser yay -S --noconfirm \
+	alhp-keyring alhp-mirrorlist
+
+# Enable ALHP repos
+sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
+sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
+sed -i "/\[community-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
+
+# Update
+pacman -Syyu --noconfirm 2>&1 | grep -v "warning: could not get file information"
 
 # Custom ZSTD package
 wget https://github.com/dakkshesh07/zstd-pkgbuild/releases/download/1.5.2-8/zstd-1.5.2-8-x86_64.pkg.tar.zst
