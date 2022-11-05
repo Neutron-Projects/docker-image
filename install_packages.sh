@@ -77,7 +77,7 @@ pacman -U --noconfirm zstd-1.5.2-8-x86_64.pkg.tar.zst
 rm -rf zstd-1.5.2-8-x86_64.pkg.tar.zst
 
 # Openmp-Static package
-pacman -R openmp
+pacman -R --noconfirm openmp
 wget https://github.com/dakkshesh07/openmp-static-pkgbuild/releases/download/14.0.6-1/openmp-static-14.0.6-1-x86_64.pkg.tar.zst
 pacman -U --noconfirm openmp-static-14.0.6-1-x86_64.pkg.tar.zst
 rm -rf openmp-static-14.0.6-1-x86_64.pkg.tar.zst
