@@ -2,9 +2,4 @@
 /etc/pacman.d/mirrorlist
 /etc/locale.conf
 /etc/locale.gen
-/etc/profile
-/usr/local/bin/transfer
-/usr/local/bin/ldcheck
-/usr/local/bin/libneeds
 /usr/local/bin/yay
-/root/.bashrc

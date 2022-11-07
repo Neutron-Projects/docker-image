@@ -76,7 +76,10 @@ wget https://github.com/dakkshesh07/zstd-pkgbuild/releases/download/1.5.2-8/zstd
 pacman -U --noconfirm zstd-1.5.2-8-x86_64.pkg.tar.zst
 rm -rf zstd-1.5.2-8-x86_64.pkg.tar.zst
 
-# Symlinks for python an
+# Modify $PATH to include perl binaries
+export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
+
+# Symlinks for python and pip
 ln -sf /usr/bin/pip3.10 /usr/bin/pip3
 ln -sf /usr/bin/pip3.10 /usr/bin/pip
 ln -sf /usr/bin/python3.10 /usr/bin/python3
@@ -89,5 +92,11 @@ pip3 --version
 # Install Some pip packages
 pip3 install \
     telegram-send
+
+# Setup locale
+echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
+echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+echo "LANG=en_US.UTF-8" | sudo tee -a /etc/locale.conf
+sudo locale-gen en_US.UTF-8
 
 echo 'package installtion completed'
