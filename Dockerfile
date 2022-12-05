@@ -7,6 +7,9 @@ USER root
 # Working Directory
 WORKDIR /root
 
+ENV LANG=en_US.UTF-8
+CMD ["/usr/bin/bash"]
+
 # Remove Files before copying the Rootfs
 COPY remove /tmp/
 RUN rm -rf $(< /tmp/remove)
@@ -15,15 +18,20 @@ RUN rm -rf $(< /tmp/remove)
 COPY rootfs /
 
 # Install Packages
-COPY ./install_packages.sh /tmp/
-RUN bash /tmp/install_packages.sh
+COPY pre_install.sh /tmp/
+RUN bash /tmp/pre_install.sh
 
-# Configuration
-COPY ./config.sh /tmp/
-RUN bash /tmp/config.sh
+COPY archlinux_packages.sh /tmp/
+RUN bash /tmp/archlinux_packages.sh
+
+COPY alhp_packages.sh /tmp/
+RUN bash /tmp/alhp_packages.sh
+
+COPY custom_packages.sh /tmp/
+RUN bash /tmp/custom_packages.sh
+
+COPY post_install.sh /tmp/
+RUN bash /tmp/post_install.sh
 
 # Remove the Scripts we used
-RUN rm -rf /tmp/{{install_packages,config}.sh,remove}
-
-# docker run command
-CMD ["bash"]
+RUN rm -rf /tmp/{{pre_install.sh,archlinux_packages,alhp_packages,custom_packages,post_install}.sh,remove}
