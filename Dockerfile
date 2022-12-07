@@ -27,6 +27,9 @@ RUN bash /tmp/archlinux_packages.sh
 COPY alhp_packages.sh /tmp/
 RUN bash /tmp/alhp_packages.sh
 
+COPY aether_packages.sh /tmp/
+RUN bash /tmp/aether_packages.sh
+
 COPY custom_packages.sh /tmp/
 RUN bash /tmp/custom_packages.sh
 
@@ -34,4 +37,4 @@ COPY post_install.sh /tmp/
 RUN bash /tmp/post_install.sh
 
 # Remove the Scripts we used
-RUN rm -rf /tmp/{{pre_install.sh,archlinux_packages,alhp_packages,custom_packages,post_install}.sh,remove}
+RUN rm -rf /tmp/{{pre_install.sh,archlinux_packages,alhp_packages,aether_packages,custom_packages,post_install}.sh,remove}
