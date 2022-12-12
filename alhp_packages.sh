@@ -6,6 +6,9 @@ set -e
 useradd -m -G wheel -s /bin/bash auruser
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 
+# Update yay
+sudo -u auruser yay -S --noconfirm yay
+
 # AUR Packages
 sudo -u auruser yay -S --noconfirm \
     alhp-keyring alhp-mirrorlist
