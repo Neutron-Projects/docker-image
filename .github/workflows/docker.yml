@@ -12,7 +12,7 @@ on:
 env:
   # Change these values if you have forked it for your own works
   # Use Lowercase vaue of your Username
-  GITHUB_USERNAME: dakkshesh07
+  GITHUB_USERNAME: Dakkshesh
   GITHUB_EMAIL: dakkshesh5@gmail.com
   GITHUB_ORG: neutron-projects
 
@@ -24,7 +24,7 @@ env:
 
 jobs:
   push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
