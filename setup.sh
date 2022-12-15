@@ -38,6 +38,7 @@ dnf install -y \
     neofetch \
     ninja-build \
     openssl-devel \
+    patchelf \
     python3 \
     python3-pip \
     sudo \
@@ -46,6 +47,11 @@ dnf install -y \
     uboot-tools \
     xz \
     zlib-devel
+    
+# gh cli
+dnf install 'dnf-command(config-manager)'
+dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+dnf install gh
 
 # pip packages
 pip3 install \
