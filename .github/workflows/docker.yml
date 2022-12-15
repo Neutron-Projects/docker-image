@@ -3,12 +3,12 @@ name: Build and Push
 on:
   push:
     branches:
-      - arch-neutron
+      - fedora-neutron
   schedule:
       # Every Saturday at 1:30AM UTC
       - cron: "30 01 * * 6"
   workflow_dispatch:
-   
+
 env:
   # Change these values if you have forked it for your own works
   # Use Lowercase vaue of your Username
@@ -20,7 +20,7 @@ env:
 
   # Image name and tag. MUST be lowercase
   IMAGE_NAME: docker-image
-  IMAGE_TAG: arch-neutron
+  IMAGE_TAG: fedora-neutron
 
 jobs:
   push:
