@@ -26,6 +26,7 @@ dnf install -y \
     ccache \
     clang \
     cmake \
+    curl \
     elfutils-libelf-devel \
     flex \
     gcc \
@@ -45,6 +46,7 @@ dnf install -y \
     texinfo-tex \
     tmate \
     uboot-tools \
+    wget \
     xz \
     zlib-devel
     
