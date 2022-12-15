@@ -58,6 +58,5 @@ git config --global color.ui auto
 
 # Timezone configuration
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-timedatectl set-timezone Asia/Kolkata
 
 echo 'Fedora packages installtion completed'
