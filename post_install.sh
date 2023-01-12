@@ -26,6 +26,8 @@ pip3 --version
 pip3 install \
     telegram-send
 
+pip3 install --force-reinstall -v "python-telegram-bot==13.5"
+
 # Setup locale
 echo "LC_ALL=en_US.UTF-8" | sudo tee -a /etc/environment
 echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
