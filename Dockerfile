@@ -24,6 +24,9 @@ RUN bash /tmp/pre_install.sh
 COPY archlinux_packages.sh /tmp/
 RUN bash /tmp/archlinux_packages.sh
 
+COPY cos_packages.sh /tmp/
+RUN bash /tmp/cos_packages.sh
+
 COPY alhp_packages.sh /tmp/
 RUN bash /tmp/alhp_packages.sh
 
@@ -34,4 +37,4 @@ COPY post_install.sh /tmp/
 RUN bash /tmp/post_install.sh
 
 # Remove the Scripts we used
-RUN rm -rf /tmp/{{pre_install.sh,archlinux_packages,alhp_packages,custom_packages,post_install}.sh,remove}
+RUN rm -rf /tmp/{{pre_install.sh,archlinux_packages,cos_packages,alhp_packages,custom_packages,post_install}.sh,remove}
