@@ -6,6 +6,7 @@ set -e
 wget "https://mirror.cachyos.org/cachyos-repo.tar.xz"
 tar -xf "cachyos-repo.tar.xz"
 cd cachyos-repo
+sed -i 's|pacman -U|pacman -U  --noconfirm|' cachyos-repo.sh
 bash cachyos-repo.sh
 cd ..
 rm -rf cachyos-repo
