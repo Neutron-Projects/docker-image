@@ -20,6 +20,7 @@ pacman -Sy --noconfirm \
     github-cli \
     gperf \
     htop \
+    hyperfine \
     jdk-openjdk \
     jemalloc \
     libelf \
