@@ -24,11 +24,11 @@ RUN bash /tmp/pre_install.sh
 COPY archlinux_packages.sh /tmp/
 RUN bash /tmp/archlinux_packages.sh
 
-COPY cos_packages.sh /tmp/
-RUN bash /tmp/cos_packages.sh
-
 COPY alhp_packages.sh /tmp/
 RUN bash /tmp/alhp_packages.sh
+
+COPY cos_packages.sh /tmp/
+RUN bash /tmp/cos_packages.sh
 
 COPY custom_packages.sh /tmp/
 RUN bash /tmp/custom_packages.sh
