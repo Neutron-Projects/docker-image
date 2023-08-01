@@ -3,7 +3,7 @@ name: Build and Push
 on:
   push:
     branches:
-      - arch-neutron
+      - main
   schedule:
       # Every Saturday at 1:30AM UTC
       - cron: "30 01 * * 6"
