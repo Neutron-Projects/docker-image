@@ -1,5 +1,4 @@
 /etc/pacman.conf
-/etc/pacman.d/mirrorlist
 /etc/locale.conf
 /etc/locale.gen
 /usr/local/bin/yay
