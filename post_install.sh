@@ -13,10 +13,10 @@ git config --global user.email "${GIT_EMAIL}"
 export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 
 # Symlinks for python and pip
-ln -sf /usr/bin/pip3.10 /usr/bin/pip3
-ln -sf /usr/bin/pip3.10 /usr/bin/pip
-ln -sf /usr/bin/python3.10 /usr/bin/python3
-ln -sf /usr/bin/python3.10 /usr/bin/python
+ln -sf /usr/bin/pip3.11 /usr/bin/pip3
+ln -sf /usr/bin/pip3.11 /usr/bin/pip
+ln -sf /usr/bin/python3.11 /usr/bin/python3
+ln -sf /usr/bin/python3.11 /usr/bin/python
 
 # python and pip version
 python3 --version
