@@ -7,6 +7,7 @@ pacman -Sy --noconfirm \
     aarch64-linux-gnu-binutils \
     base-devel \
     bc \
+    bear \
     bison \
     ccache \
     clang \
@@ -39,6 +40,7 @@ pacman -Sy --noconfirm \
     python3 \
     rsync \
     sudo \
+    tensorflow \
     tmate \
     tmux \
     uboot-tools \
