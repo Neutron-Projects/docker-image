@@ -6,12 +6,13 @@ set -e
 useradd -m -G wheel -s /bin/bash auruser
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 
-# Update yay
-sudo -u auruser yay -S --noconfirm yay
+# Install paru
+sudo -u auruser yay -S --noconfirm paru
+sudo -u auruser paru -R --noconfirm yay
 
 # AUR Packages
-sudo -u auruser yay -S --noconfirm \
-    alhp-keyring alhp-mirrorlist
+sudo -u auruser paru -S --noconfirm \
+    alhp-keyring alhp-mirrorlist pthreadpool-git
 
 # Enable ALHP repos
 sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
