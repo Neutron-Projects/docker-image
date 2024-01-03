@@ -8,7 +8,7 @@ echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 # Install paru
 sudo -u auruser yay -S --noconfirm paru
-sudo -u auruser paru -R --noconfirm yay
+rm -rf /usr/local/bin/yay
 
 # AUR Packages
 sudo -u auruser paru -S --noconfirm \
