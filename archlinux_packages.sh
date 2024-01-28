@@ -37,6 +37,7 @@ pacman -Sy --noconfirm \
     perf \
     perl \
     python-pip \
+    python-tensorflow \
     python3 \
     rsync \
     sudo \
