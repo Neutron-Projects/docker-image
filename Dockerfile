@@ -33,6 +33,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 RUN pacman-key --init && \
     pacman-key --populate
 
+# Packages for our use (Update mirrorlist to get new packages before ALHP)
+RUN cat /etc/my-packages.txt | xargs pacman -S --noconfirm
+RUN reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+RUN pacman -Syyu --noconfirm
+
 # ALHP
 RUN useradd -m -G wheel -s /bin/bash auruser
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
@@ -41,9 +46,7 @@ RUN sudo -u auruser yay -S --noconfirm paru && rm -rf /usr/local/bin/yay
 RUN sudo -u auruser paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
-RUN pacman -Syyu --noconfirm 2>&1 | grep -v "warning: could not get file information"
-RUN cat /etc/my-packages.txt | xargs pacman -S --noconfirm
-RUN reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+RUN pacman -Syyu --noconfirm 2>&1
 RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/my-packages.txt
 RUN unset MAKEFLAGS
 
