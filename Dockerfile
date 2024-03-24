@@ -42,12 +42,13 @@ RUN pacman -Syyu --noconfirm
 RUN useradd -m -G wheel -s /bin/bash auruser
 RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 RUN export MAKEFLAGS="-j$(nproc --all)"
-RUN sudo -u auruser git clone https://aur.archlinux.org/paru.git paru
-RUN sudo -u auruser cd paru && makepkg -si --noconfirm
+RUN git clone https://aur.archlinux.org/paru.git paru && chown -R auruser:auruser paru && chmod -R u+rwx paru
+RUN sudo -u auruser cd paru && makepkg -si --noconfirm && cd .. && rm -rf paru
 RUN sudo -u auruser paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN pacman -Syyu --noconfirm 2>&1
+RUN sudo -u auruser paru -Sccd
 RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/my-packages.txt
 RUN unset MAKEFLAGS
 
