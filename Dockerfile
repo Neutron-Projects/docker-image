@@ -38,17 +38,29 @@ RUN cat /etc/my-packages.txt | xargs pacman -S --noconfirm
 RUN reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 RUN pacman -Syyu --noconfirm
 
-# ALHP
-RUN useradd -m -G wheel -s /bin/bash auruser
-RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
+# Setup auruser
+RUN useradd -m auruser && \
+    echo 'auruser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+WORKDIR /home/auruser
+USER auruser
+
+# Build and install paru
 RUN export MAKEFLAGS="-j$(nproc --all)"
-RUN sudo -u auruser yay -S --noconfirm paru && rm -rf /usr/local/bin/yay
-RUN sudo -u auruser paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git
+WORKDIR /tmp
+RUN git clone https://aur.archlinux.org/paru.git
+WORKDIR /tmp/paru
+RUN makepkg -si --noconfirm
+
+# ALHP
+RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git
+RUN paru -Sccd
+
+USER root
+WORKDIR /
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN pacman -Syyu --noconfirm 2>&1
-RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/my-packages.txt
-RUN unset MAKEFLAGS
+RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/my-packages.txt && rm -rf /tmp/*
 
 # Perl path
 ENV PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
