@@ -122,7 +122,7 @@ USER root
 WORKDIR /
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
 RUN sed -i "/\[extra-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
-RUN pacman -Syyu --noconfirm 2>&1
+RUN pacman -Syyu --noconfirm
 RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/minimal_packages.txt && rm -rf /tmp/*
 
 # Perl path
@@ -138,5 +138,19 @@ RUN ln -sf /usr/bin/python3.11 /usr/bin/python
 # See https://gitlab.archlinux.org/archlinux/archlinux-docker/-/blob/301942f9e5995770cb5e4dedb4fe9166afa4806d/README.md#principles
 # Source: https://gitlab.archlinux.org/archlinux/archlinux-docker/-/blob/301942f9e5995770cb5e4dedb4fe9166afa4806d/Makefile#L22
 RUN bash -c "rm -rf etc/pacman.d/gnupg/{openpgp-revocs.d/,private-keys-v1.d/,pubring.gpg~,gnupg.S.}*"
+
+CMD ["/usr/bin/bash"]
+
+# Use the arch-minimal image as the base
+FROM ghcr.io/neutron-projects/docker-image:arch-minimal as deprecated
+
+# Add a deprecation label
+LABEL deprecation="This tag is deprecated. If you are using this image for compiling Linux kernels, please use the arch-minimal tag instead. The arch-neutron tag will no longer receive updates."
+
+# Add a deprecation notice script
+RUN echo 'echo "WARNING: The arch-neutron tag is deprecated. If you are using this image for compiling Linux kernels, please use the arch-minimal tag instead. The arch-neutron tag will no longer receive updates."' >> /etc/profile.d/deprecation_notice.sh
+
+# Ensure the deprecation notice is displayed at login
+RUN echo 'source /etc/profile.d/deprecation_notice.sh' >> /etc/bash.bashrc
 
 CMD ["/usr/bin/bash"]

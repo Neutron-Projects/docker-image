@@ -69,3 +69,28 @@ jobs:
       - name: Pushing the Image
         run: |
           docker push ghcr.io/${GITHUB_ORG}/${IMAGE_NAME}:${IMAGE_TAG}
+
+  deprecated:
+    runs-on: ubuntu-22.04
+    needs: minimal
+    env:
+      IMAGE_TAG: arch-neutron
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configuring git
+        run: |
+          git config --global user.name $GITHUB_USERNAME
+          git config --global user.email $GITHUB_EMAIL
+      - name: Logging in to Docker
+        run: |
+          echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+      - name: Building the Image
+        run: |
+          docker build -t ghcr.io/${GITHUB_ORG}/${IMAGE_NAME}:${IMAGE_TAG} --target deprecated .
+          echo "Build Completed Successfully!"
+      - name: Pushing the Image
+        run: |
+          docker push ghcr.io/${GITHUB_ORG}/${IMAGE_NAME}:${IMAGE_TAG}
