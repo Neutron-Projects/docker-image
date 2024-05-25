@@ -52,10 +52,11 @@ RUN git clone https://aur.archlinux.org/paru.git
 WORKDIR /tmp/paru
 RUN makepkg -si --noconfirm
 
-# ALHP
-RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git
+# AUR
+RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git antman
 RUN paru -Sccd
 
+# ALHP
 USER root
 WORKDIR /
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
@@ -114,10 +115,11 @@ RUN git clone https://aur.archlinux.org/paru.git
 WORKDIR /tmp/paru
 RUN makepkg -si --noconfirm
 
-# ALHP
-RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist
+# AUR
+RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist antman
 RUN paru -Sccd
 
+# ALHP
 USER root
 WORKDIR /
 RUN sed -i "/\[core-x86-64-v3\]/,/Include/"'s/^#//' /etc/pacman.conf
