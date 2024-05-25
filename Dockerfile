@@ -143,6 +143,18 @@ RUN bash -c "rm -rf etc/pacman.d/gnupg/{openpgp-revocs.d/,private-keys-v1.d/,pub
 
 CMD ["/usr/bin/bash"]
 
+# Minimal image with neutron tc shipped.
+# Use the arch-minimal image as the base
+FROM ghcr.io/neutron-projects/docker-image:arch-minimal as wtc
+
+RUN mkdir -p "/toolchains/neutron-clang"
+WORKDIR /toolchains/neutron-clang
+RUN antman -S --noprogress
+WORKDIR /
+
+CMD ["/usr/bin/bash"]
+
+# Retain support for old tags for a brief time.
 # Use the arch-minimal image as the base
 FROM ghcr.io/neutron-projects/docker-image:arch-minimal as deprecated
 
