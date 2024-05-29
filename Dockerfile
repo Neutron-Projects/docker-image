@@ -68,11 +68,8 @@ RUN rm -rf /var/lib/pacman/sync/* && rm -rf /etc/minimal_packages.txt && rm -rf 
 # Perl path
 ENV PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 
-# Symlinks for python and pip
-RUN ln -sf /usr/bin/pip3.11 /usr/bin/pip3
-RUN ln -sf /usr/bin/pip3.11 /usr/bin/pip
-RUN ln -sf /usr/bin/python3.11 /usr/bin/python3
-RUN ln -sf /usr/bin/python3.11 /usr/bin/python
+# Test python and pip
+RUN python --version && pip --version
 
 # Set up pacman-key without distributing the lsign key
 # See https://gitlab.archlinux.org/archlinux/archlinux-docker/-/blob/301942f9e5995770cb5e4dedb4fe9166afa4806d/README.md#principles
