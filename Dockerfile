@@ -53,7 +53,7 @@ WORKDIR /tmp/paru
 RUN makepkg -si --noconfirm
 
 # AUR
-RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist pthreadpool-git ncurses5-compat-libs antman
+RUN paru -S --noconfirm alhp-keyring alhp-mirrorlist ncurses5-compat-libs antman
 RUN paru -Sccd
 
 # ALHP
